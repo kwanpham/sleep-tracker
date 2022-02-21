@@ -13,8 +13,6 @@ public class UserEditRequest {
     @NotNull
     private Long id;
 
-    @Length(min = 3)
-    private String username;
 
     @Length(min = 5)
     private String password;

@@ -1,5 +1,6 @@
 package quandev.com.sleeptracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -21,6 +22,7 @@ public class UserEntity {
     @Column(name = "username" , unique = true)
     private String username;
 
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 
@@ -36,6 +38,7 @@ public class UserEntity {
     @Column(name = "created_time")
     private LocalDateTime createdTime;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
     private List<SleepEntryEntity> sleepEntryList = new ArrayList<>();
 

@@ -7,10 +7,13 @@ import quandev.com.sleeptracker.dto.request.LoginRequest;
 import quandev.com.sleeptracker.dto.request.SignupRequest;
 import quandev.com.sleeptracker.dto.request.UserEditRequest;
 import quandev.com.sleeptracker.dto.response.LoginResponse;
+import quandev.com.sleeptracker.entity.SleepEntryEntity;
+import quandev.com.sleeptracker.entity.UserEntity;
 import quandev.com.sleeptracker.service.SecurityUserService;
 import quandev.com.sleeptracker.service.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -21,6 +24,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/list")
+    public List<UserEntity> listAllST() {
+        return userService.listAllUser();
+    }
+
 
     @PostMapping("/login")
     public LoginResponse loginUser(@Valid @RequestBody LoginRequest loginRequest) {

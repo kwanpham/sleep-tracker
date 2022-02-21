@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import quandev.com.sleeptracker.dto.request.SleepEntryCreateRequest;
 import quandev.com.sleeptracker.dto.request.SleepEntryDeleteRequest;
 import quandev.com.sleeptracker.dto.request.SleepEntryEditRequest;
+import quandev.com.sleeptracker.entity.SleepEntryEntity;
 import quandev.com.sleeptracker.service.SleepTrackerService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/st")
@@ -14,6 +16,12 @@ public class SleepTrackController {
 
     @Autowired
     SleepTrackerService sleepTrackerService;
+
+    @GetMapping("/list/{userId}")
+    public List<SleepEntryEntity> listAllST(@PathVariable Long userId) {
+       return sleepTrackerService.listAllSleepEntryByUser(userId);
+    }
+
 
     @PostMapping("/add")
     public HttpStatus addnewSleepEntry(@RequestBody  SleepEntryCreateRequest request) {
@@ -29,7 +37,7 @@ public class SleepTrackController {
 
     }
 
-    @PutMapping("/delete")
+    @DeleteMapping("/delete")
     public HttpStatus delete(@RequestBody SleepEntryDeleteRequest request) {
         sleepTrackerService.deleteSleepEntry(request);
         return HttpStatus.OK;

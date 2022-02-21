@@ -80,7 +80,7 @@ public class UserService {
     public void editUser(UserEditRequest userEditRequest) {
         UserEntity userEntity = userRepo.findById(userEditRequest.getId()).get();
 
-        userEntity.setUsername(userEditRequest.getUsername());
+
         userEntity.setFullname(userEditRequest.getFullname());
         userEntity.setPassword(passwordEncoder.encode(userEditRequest.getPassword()));
         userEntity.setEmail(userEditRequest.getEmail());
